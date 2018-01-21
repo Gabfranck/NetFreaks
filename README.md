@@ -13,7 +13,7 @@ doc is coming soon
   ```json
   {
     "ApiKey": "Your ApiKey from OMDB",
-    "MainFolder": "/full/path/to/medias/folder/" //optional ( will be set at first launch )
+    "MainFolder": "/full/path/to/medias/folder/" optional ( will be set at first launch )
   }
   ```
   Get api key [here](http://www.omdbapi.com/)
