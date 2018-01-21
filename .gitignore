@@ -1,0 +1,10 @@
+node_modules
+build
+.DS_Store
+*.swp
+*.bak
+*.log
+Medias
+config.json
+myjsonfile.json
+package-lock.json

@@ -1,0 +1,327 @@
+h1, h2, h3, h4, h5{
+  color: #eee;
+  font-weight: bold;
+  text-shadow: 0 4px 10px #b80f0a;
+  /*rgba(255,255,255,0.5)*/
+}
+html{
+    overflow: hidden;
+    height:100%;
+}​
+
+
+.header{
+    height:50px;
+    width:100%;
+}
+
+.logo{
+  margin-top: 9px;
+  margin-bottom: 0px;
+  margin-left: 2px;
+  color: #eee;
+  text-shadow: 0 5px 10px #000000;
+  -webkit-text-stroke: 2px black;
+  cursor: default ;
+  user-select: none;
+  font-family: 'PT Sans Narrow', sans-serif;
+  /*font-family: 'Sedgwick Ave Display', cursive;*/
+  font-size: 45px;
+}
+
+.logo-caps{
+  color: #222;
+  font-size: 42px;
+  text-shadow: 0 0 5px #fff;
+
+}
+.btn-season{
+  display: inline-block !important;
+  font-size: 30px !important;
+  font-weight: bold;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #444 !important;
+  color: #eee !important;
+  margin: 5px;
+  border-radius: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+  text-decoration: none !important;
+  outline:none !important;
+  border: none !important;
+}
+
+.btn-season:hover{
+  background: #333 !important;
+  color: rgba(255, 15, 10, 0.5) !important;
+  box-shadow: 0px 3px 10px 0px rgba(255, 15, 10, 0.5);
+}
+
+.btn-season:focus{
+  background: #333;
+}
+
+.btn-season-active{
+  background: #222 !important;
+  margin-top: -5px;
+  color: #b80f0a !important;
+  box-shadow: 0px 13px 20px 0px rgba(255, 15, 10, 0.5);
+  text-decoration: none !important;
+  outline:none !important;
+  border: none !important;
+
+}
+
+.btn-season-active:hover{
+  background: #292929 !important;
+  color: #b80f0a !important;
+  box-shadow: 0px 13px 20px 0px rgba(255, 15, 10, 0.5);
+}
+
+.btn-custom{
+  background: #333;
+  box-shadow: 0 0 2px #000000;
+
+  color: #b80f0a;
+}
+
+.btn-custom:hover{
+  background: #444;
+  color: #b80f0a;
+}
+
+.btn-custom:focus{
+  background: #222;
+  color: #b80f0a;
+}
+
+.icon-bar {
+    position: absolute;
+    z-index: 9;
+    top: 70px;
+    height:100% !important;
+    width: 100px; /* Set a specific width */
+    background-color: #222; /* Dark-grey background */
+    box-shadow: 0 0 15px #000000;
+
+}
+
+.icon-bar a {
+    display: block; /* Make the links appear below each other instead of side-by-side */
+    height: 100px;
+    text-align: center; /* Center-align text */
+    padding: 16px; /* Add some padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: #eee; /* White text color */
+    font-size: 45px; /* Increased font-size */
+}
+
+.icon-bar a:hover {
+    background-color: #292929; /* Add a hover color */
+}
+
+.active {
+  background: #111 ;
+  color: #b80f0a !important;
+  padding-right: 70px;
+}
+
+.active:hover {
+  background: #191919 !important;
+}
+
+
+
+.navbar-inverse{
+  background: #b80f0a;
+  color: #ccc;
+  border: none;
+  overflow: hidden;
+  height: 70px;
+  box-shadow: 0 0 15px #000000;
+
+}
+
+.nav-no-padding{
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+li.active  a{
+  background: #222 !important;
+  color: #b80f0a !important;
+}
+
+li:hover a{
+    background: #922 !important;
+    color: #ccc !important;
+
+}
+
+li.active:hover a{
+    background: #522 !important;
+    color: #b80f0a !important;
+}
+
+li.active:focus a{
+    background: #522 !important;
+    color: #b80f0a !important;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+   -webkit-border-radius: 10px; border-radius: 10px;
+} /* Handle */
+::-webkit-scrollbar-thumb { -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #b80f0a;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5),0 0 10px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255,0,0,0.6);
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 100px;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.7);
+    backdrop-filter: blur(15px);
+
+    overflow: auto;
+    transition: 0.65s;
+}
+
+.overlay-content {
+    height:calc( 100% - 70px );
+
+    text-align: center;
+    margin-top: 70px;
+}
+
+.overlay a {
+    padding: 10px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-decoration: none !important;
+    outline:none !important;
+    border: none !important;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+  }
+}
+
+.poster{
+  filter: grayscale(20%);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+  transition: 0.3s ease;
+  /*box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.8);*/
+}
+
+.poster-selected{
+  filter: grayscale(0%);
+  filter: saturate(110%);
+  box-shadow: 0px 0px 70px 0px rgba(255, 15, 10, 0.8);
+  margin-top: -20px;
+
+  /*box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.8);*/
+}
+.poster-info{
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.8);
+  /*box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.8);*/
+}
+
+.poster:hover{
+  filter: grayscale(0%);
+  filter: saturate(110%);
+  box-shadow: 0px 0px 70px 0px rgba(255, 15, 10, 0.8);
+  margin-top: -20px;
+  /*box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.8);*/
+
+}
+
+
+.list-group-item{
+  border: none;
+  margin: 10px;
+  margin-left: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 0px !important;
+  font-size: 26px;
+  color: #eee !important;
+  background-color: #444;
+  transition: 0.3s;
+  text-decoration: none !important;
+  outline:none !important;
+  border: none !important;
+}
+.list-group-item:hover{
+  background-color: #333 !important;
+  color: #b80f0a !important;
+  box-shadow: 0px 3px 20px 0px rgba(255, 15, 10, 0.5);
+
+}
+button.list-group-item:focus{
+  background-color: #333 !important;
+  color: #b80f0a !important;
+  text-decoration: none !important;
+  outline:none !important;
+  border: none !important;
+}
+
+.fixed-bottom{
+  position:fixed;
+  bottom:0px;
+  width:100px;
+}
+
+.content{
+    position:absolute;
+    width: calc( 100% - 100px );
+    height:calc( 100% - 70px );
+    top: 0px;
+    top: 70px;
+    left:100px;
+    bottom:0px;
+    margin-right: 100px;
+    overflow:auto;
+    background: #373737;
+    color: #ccc;
+}​
+button:focus {
+    text-decoration: none !important;
+    outline:none !important;
+    border: none !important;
+}
+
+a:focus {
+  text-decoration: none !important;
+  outline:none !important;
+  border: none !important;
+}
