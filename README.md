@@ -1,12 +1,12 @@
-# NetFreex
+# NetFreaks
 
 doc is coming soon
 
 # Installation
 
   ```bash
-    git clone https://github.com/Gabfranck/NetFreex.git
-    cd NetFreex
+    git clone https://github.com/Gabfranck/NetFreaks.git
+    cd NetFreaks
     npm install
   ```
   Create a config.json file at the root
@@ -29,7 +29,7 @@ doc is coming soon
 
 # Licence
 
-NetFreex - Media Center under GPLv3
+NetFreaks - Media Center under GPLv3
 Copyright (C) 2018  Gabriel Franck
 
 This program is free software: you can redistribute it and/or modify

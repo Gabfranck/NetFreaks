@@ -5,15 +5,15 @@ layout: default
 [Link to another page](another-page).
 
 
-# NetFreex
+# NetFreaks
 
 doc is coming soon
 
 # Installation
 
   ```bash
-    git clone https://github.com/Gabfranck/NetFreex.git
-    cd NetFreex
+    git clone https://github.com/Gabfranck/NetFreaks.git
+    cd NetFreaks
     npm install
   ```
   
@@ -39,7 +39,7 @@ doc is coming soon
 
 # Licence
 
-NetFreex - Media Center under GPLv3
+NetFreaks - Media Center under GPLv3
 
 Copyright (C) 2018  Gabriel Franck
 
