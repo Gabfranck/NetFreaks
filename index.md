@@ -16,13 +16,16 @@ doc is coming soon
     cd NetFreex
     npm install
   ```
+  
   Create a config.json file at the root
   ```json
   {
     "ApiKey": "Your ApiKey from OMDB",
-    "MainFolder": "/full/path/to/medias/folder/" //optional ( will be set at first launch )
+    "MainFolder": "/full/path/to/medias/folder/"
   }
   ```
+  "MainFolder" is optional, it will be set at first launch
+
   Get api key [here](http://www.omdbapi.com/)
 
 # Run it
