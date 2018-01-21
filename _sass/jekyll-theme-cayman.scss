@@ -191,7 +191,9 @@ a {
     font-size: 0.9rem;
     color: $code-text-color;
     background-color: $code-bg-color;
-    border-radius: 0.3rem;
+    border-radius: 3px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+    
   }
 
   pre {
