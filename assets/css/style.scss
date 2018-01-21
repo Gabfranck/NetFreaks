@@ -9,3 +9,17 @@ h1, h2, h3, h4, h5{
   text-shadow: 0 4px 10px #a50d09;
   /*rgba(255,255,255,0.5)*/
 }
+
+.logo{
+  margin-top: 9px;
+  margin-bottom: 0px;
+  margin-left: 2px;
+  color: #eee;
+  text-shadow: 0 5px 10px #000000;
+  -webkit-text-stroke: 2px black;
+  cursor: default ;
+  user-select: none;
+  font-family: 'PT Sans Narrow', sans-serif;
+  /*font-family: 'Sedgwick Ave Display', cursive;*/
+  font-size: 45px;
+}
