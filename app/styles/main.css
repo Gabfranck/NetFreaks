@@ -7,14 +7,23 @@ h1, h2, h3, h4, h5{
 html{
     overflow: hidden;
     height:100%;
+    background: #373737;
 }​
+body{
+  background: #373737;
+}
 
 
 .header{
     height:50px;
     width:100%;
 }
-
+.logo-image{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  marginLeft: 0px;
+}
 .logo{
   margin-top: 9px;
   margin-bottom: 0px;

@@ -1,11 +1,13 @@
 import React from "react";
 import Fs from 'fs';
-const config = require('../../../config');
-
 import ItemStore from "../components/ItemStore";
 
-var Untracked = JSON.parse(Fs.readFileSync(config.MainFolder+'/untracked.json', 'utf8'))
 
+require('babel-polyfill')
+const Store = require('electron-store');
+const store = new Store();
+
+var Untracked = store.get('untracked')
 
 export default class Home extends React.Component {
   render() {

@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
 import Fs from 'fs';
-const config = require('../../../../config');
 
+require('babel-polyfill')
+const Store = require('electron-store');
+const store = new Store();
 
-var Untracked = JSON.parse(Fs.readFileSync(config.MainFolder+'/untracked.json', 'utf8'))
+var Untracked = store.get('untracked')
+
 
 
 export default class Nav extends React.Component {
@@ -71,7 +74,7 @@ export default class Nav extends React.Component {
 //         <li className={homeClass}>
           // <Link to="/" onClick={this.toggleCollapse.bind(this)}>
           //   <i className="fa fa-home"></i>
-          //   NerFreaks
+          //   NetFreaks
           // </Link>
 //         </li>
 //         <li className={filmsClass}>

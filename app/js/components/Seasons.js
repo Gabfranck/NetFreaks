@@ -2,11 +2,14 @@ import React from "react";
 import Episode from "./Episode";
 import electron, { ipcRenderer } from 'electron';
 import Fs from 'fs';
-const config = require('../../../config');
 
+require('babel-polyfill')
+const Store = require('electron-store');
+const store = new Store();
 
-var TvShows = JSON.parse(Fs.readFileSync(config.MainFolder+'/tv_shows.json', 'utf8'))
-var Untracked = JSON.parse(Fs.readFileSync(config.MainFolder+'/untracked.json', 'utf8'))
+var TvShows = store.get('tvShows')
+var Untracked = store.get('untracked')
+
 
 export default class Seasons extends React.Component {
   constructor(props) {

@@ -8,3 +8,5 @@ Medias
 config.json
 myjsonfile.json
 package-lock.json
+dist
+debian.json

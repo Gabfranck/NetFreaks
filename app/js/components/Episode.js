@@ -2,9 +2,6 @@ import React from "react";
 import Item from "./Item";
 import electron, { ipcRenderer } from 'electron';
 import Fs from 'fs';
-const config = require('../../../config');
-
-var TvShows = JSON.parse(Fs.readFileSync(config.MainFolder+'/tv_shows.json', 'utf8'))
 
 
 export default class Episode extends React.Component {

@@ -29,24 +29,11 @@ const {ipcMain, dialog} = require('electron')
 var tnp = require('torrent-name-parser');
 const http = require('http');
 
-try{ var config = require('./config')
-}catch (ex) {
-  var config = {MainFolder: ""}
-  fs.writeFile('config.json', JSON.stringify(config), 'utf8')
-}
-try{ var filmsData = require(config.MainFolder+'/films')
-}catch (ex) {
-  var filmsData = []
-}
-try{ var tv_showsData = require(config.MainFolder+'/tv_shows')
-}catch (ex) {
-  var tv_showsData = []
-}
+const Store = require('electron-store');
+const store = new Store();
 
-try{ var untrackedData = require(config.MainFolder+'/untracked')
-}catch (ex) {
-  var untrackedData = []
-}
+console.log(store.get('config.MainFolder'))
+
 
 // debug
 if (process.env.NODE_ENV === 'development') {
@@ -93,30 +80,8 @@ function writeListFilesFile(medias) {
   return new Promise(function(resolve) {
     var obj = []
     let json
-    fs.readFile('myjsonfile.json', 'utf8', function readFile(err, data){
-      if (err){
-        json = JSON.stringify(medias); //convert it back to json
-        fs.writeFile('myjsonfile.json', json, 'utf8'); // write it back
-        resolve(medias)
-      } else {
-        if (data) {
-          obj = JSON.parse(data); //now it an object
-          if (obj.equals(medias)) {
-            console.log('same files');
-            resolve(medias)
-          }else {
-            console.log('different');
-            json = JSON.stringify(medias); //convert it back to json
-            fs.writeFile('myjsonfile.json', json, 'utf8'); // write it back
-            resolve(medias)
-          }
-        }else {
-          json = JSON.stringify(medias); //convert it back to json
-          fs.writeFile('myjsonfile.json', json, 'utf8'); // write it back
-          resolve(medias)
-        }
-      }
-    });
+    store.set('files', medias)
+    resolve(medias)
   });
 }
 
@@ -130,7 +95,6 @@ function makeListFiles(dir, filelist) {
     }
     else {
       if (!file.match(/.part$/) && !file.match(/.json$/) ) {
-        console.log(file);
         filelist.push({name: file, fullpath: dir + '/' + file});
       }
     }
@@ -145,6 +109,7 @@ function formatString(string){
     result = result.replace(/-/g, '');
     result = result.replace(/:/g, '');
     result = result.replace(/  /g, ' ');
+    result = result.replace(/ /g, '.');
     return result
   }
   return
@@ -161,7 +126,7 @@ function filterTypes(accepted, types){
 
 function tvShowsWriteJson(tvshows) {
   return new Promise(function(resolve) {
-    console.log("===================== TV SHOWS =======================");
+
     let tvshowslist = []
     let untrackedlist = []
     let itemsPromises = []
@@ -247,17 +212,9 @@ function tvShowsWriteJson(tvshows) {
 
     Promise.all(itemsPromises).then( () => {
 
-
-      // console.log("===================== FILMS list =======================");
-      // console.log(filmslist);
-      // console.log(tvshowslist);
-      fs.writeFile(config.MainFolder+'/tv_shows.json', JSON.stringify(tvshowslist), function (err) {
-        console.log(err);
-      });
-
-
-      console.log("===================== Untracked =======================");
-      console.log(untrackedlist);
+      store.set('tvShows', tvshowslist)
+      console.log("===================== TV SHOWS =======================");
+      // console.log(store.get('tvShows'))
       resolve(untrackedlist)
     })
 
@@ -267,7 +224,8 @@ function tvShowsWriteJson(tvshows) {
 
 function filmsWriteJson(films) {
   return new Promise(function(resolve) {
-    console.log("===================== FILMS =======================");
+
+
     let filmslist = []
     let untrackedlist = []
     let itemsPromises = []
@@ -285,7 +243,8 @@ function filmsWriteJson(films) {
               }else {
                 filmYear = ""
               }
-              http.get("http://www.omdbapi.com/?t="+item.title+filmYear+"&apikey="+config.ApiKey, res => {
+
+              http.get("http://www.omdbapi.com/?t="+formatString(item.title)+filmYear+"&apikey="+store.get('config.ApiKey'), res => {
                 res.setEncoding("utf8");
                 let body = "";
                 res.on("data", data => {
@@ -320,17 +279,9 @@ function filmsWriteJson(films) {
     })
 
     Promise.all(itemsPromises).then( () => {
-
-
-      // console.log("===================== FILMS list =======================");
-      // console.log(filmslist);
-      fs.writeFile(config.MainFolder+'/films.json', JSON.stringify(filmslist), function (err) {
-        console.log(err);
-      });
-
-
-      // console.log("===================== Untracked =======================");
-      // console.log(untrackedlist);
+      store.set('films', filmslist)
+      console.log("===================== FILMS =======================");
+      // console.log(store.get('films'))
       resolve(untrackedlist)
     })
   })
@@ -349,15 +300,14 @@ function writeMediasFile(files) {
     })
 
     tvshows = files.filter((item) => item.season != null || item.episode != null)
-
-
     films = files.filter((item) => item.season == null && item.episode == null)
+
     Promise.all([filmsWriteJson(films),tvShowsWriteJson(tvshows)]).then((results) => {
       let untrackedlist = results[1].concat(results[0])
+
+      console.log("===================== Untracked =======================");
       console.log(untrackedlist);
-      fs.writeFile(config.MainFolder+'/untracked.json', JSON.stringify(untrackedlist), function (err) {
-        console.log(err);
-      });
+      store.set('untracked', untrackedlist)
       resolve()
     })
   })
@@ -368,8 +318,8 @@ function createWindow() {
 
 
   mainWindow = new electron.BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     webPreferences: {
       experimentalFeatures: true
     }
@@ -384,55 +334,53 @@ function createWindow() {
   );
 
 
-  electronLocalshortcut.register(mainWindow, 'up', () => {
-    console.log('up');
-    mainWindow.webContents.send('up' , {msg:'up'});
-  });
-  electronLocalshortcut.register(mainWindow, 'down', () => {
-    console.log('down');
-    mainWindow.webContents.send('down' , {msg:'down'});
-  });
-  electronLocalshortcut.register(mainWindow, 'left', () => {
-    console.log('left');
-    mainWindow.webContents.send('left' , {msg:'left'});
-  });
-  electronLocalshortcut.register(mainWindow, 'right', () => {
-    console.log('right');
-    mainWindow.webContents.send('right' , {msg:'right'});
-  });
-  electronLocalshortcut.register(mainWindow, 'enter', () => {
-    console.log('enter');
-    mainWindow.webContents.send('enter' , {msg:'enter'});
-  });
-  electronLocalshortcut.register(mainWindow, 'esc', () => {
-    console.log('esc');
-    mainWindow.webContents.send('esc' , {msg:'esc'});
-  });
+  // electronLocalshortcut.register(mainWindow, 'up', () => {
+  //   console.log('up');
+  //   mainWindow.webContents.send('up' , {msg:'up'});
+  // });
+  // electronLocalshortcut.register(mainWindow, 'down', () => {
+  //   console.log('down');
+  //   mainWindow.webContents.send('down' , {msg:'down'});
+  // });
+  // electronLocalshortcut.register(mainWindow, 'left', () => {
+  //   console.log('left');
+  //   mainWindow.webContents.send('left' , {msg:'left'});
+  // });
+  // electronLocalshortcut.register(mainWindow, 'right', () => {
+  //   console.log('right');
+  //   mainWindow.webContents.send('right' , {msg:'right'});
+  // });
+  // electronLocalshortcut.register(mainWindow, 'enter', () => {
+  //   console.log('enter');
+  //   mainWindow.webContents.send('enter' , {msg:'enter'});
+  // });
+  // electronLocalshortcut.register(mainWindow, 'esc', () => {
+  //   console.log('esc');
+  //   mainWindow.webContents.send('esc' , {msg:'esc'});
+  // });
 
   mainWindow.on('closed', function() {
     mainWindow = null;
-    // exec("vlc --play-and-exit -f ~/Téléchargements/Rick.and.Morty.S03E01.VOSTFR.720p.AS.WEBRip.AAC2.0.H.264-EXTREME.mkv")
   });
 };
 
 
 function createConfig() {
-  if (config.MainFolder == "") {
+  if (store.get('config.MainFolder') == "" || store.get('config.MainFolder') == undefined) {
     dialog.showOpenDialog({properties: ['openDirectory']},function (fileNames) {
 
-        config.MainFolder = fileNames[0]
-        let configJson = JSON.stringify(config)
-        fs.writeFile('config.json', configJson, 'utf8')
+      console.log(fileNames[0]);
+      store.set('config.MainFolder', fileNames[0])
 
-        var files = writeListFilesFile(makeListFiles(fileNames[0])).then(function(files) {
-          // console.log(files);
-          writeMediasFile(files).then(()=>{
-            createWindow()
-          });
-        })
+      var files = writeListFilesFile(makeListFiles(fileNames[0])).then(function(files) {
+        // console.log(files);
+        writeMediasFile(files).then(()=>{
+          createWindow()
+        });
+      })
     });
   }else {
-    var files = writeListFilesFile(makeListFiles(config.MainFolder)).then(function(files) {
+    var files = writeListFilesFile(makeListFiles(store.get('config.MainFolder'))).then(function(files) {
       // console.log(files);
       writeMediasFile(files).then(()=>{
         createWindow()
@@ -460,7 +408,7 @@ electron.app.on('activate', function() {
 
 ipcMain.on('reload-data', (event, arg) => {
   console.log("reloading");
-  var files = writeListFilesFile(makeListFiles(config.MainFolder)).then(function(files) {
+  var files = writeListFilesFile(makeListFiles(store.get('config.MainFolder'))).then(function(files) {
     // console.log(files);
     writeMediasFile(files).then(()=>{
       mainWindow.reload()
@@ -473,9 +421,8 @@ ipcMain.on('reload-data', (event, arg) => {
 ipcMain.on('change-folder', (event, arg) => {
   dialog.showOpenDialog({properties: ['openDirectory']},function (fileNames) {
 
-    config.MainFolder = fileNames[0]
-    let configJson = JSON.stringify(config)
-    fs.writeFile('config.json', configJson, 'utf8')
+    console.log( fileNames[0]);
+    store.set('config.MainFolder', fileNames[0])
 
     var files = writeListFilesFile(makeListFiles(fileNames[0])).then(function(files) {
       // console.log(files);
@@ -486,17 +433,24 @@ ipcMain.on('change-folder', (event, arg) => {
   });
   event.returnValue = 'pong'
 })
-
 ipcMain.on('vlc-exec', (event, arg) => {
+  let vlc
+  if (process.platform == 'darwin') {
+    vlc = "/Applications/VLC.app/Contents/MacOS/VLC"
+  }else if (process.platform == 'win32') {
+    vlc = "'C:\\Program Files\\VideoLAN\\VLC\\VLC.exe'"
+  }else if (process.platform == 'linux') {
+    vlc = "vlc"
+  }
   // need format arg
   fs.readFile(arg+".part", function readFile(err, data){
     if (err) {
-      console.log("vlc --play-and-exit -f '"+ arg+"'")
-      exec("vlc --play-and-exit -f '"+ arg+"'")
+      console.log(vlc + " --play-and-exit -f '"+ arg+"'")
+      exec(vlc + " --play-and-exit -f '"+ arg+"'")
       event.returnValue = 'pong'
     }else {
-      console.log("vlc --play-and-exit -f '"+ arg+".part'");
-      exec("vlc --play-and-exit -f '"+ arg+".part'")
+      console.log(vlc + " --play-and-exit -f '"+ arg+".part'");
+      exec(vlc + " --play-and-exit -f '"+ arg+".part'")
       event.returnValue = 'pong'
     }
   })

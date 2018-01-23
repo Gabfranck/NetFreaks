@@ -1,12 +1,15 @@
 import React from "react";
 import electron, { ipcRenderer } from 'electron';
 import Fs from 'fs';
-const config = require('../../../config');
 
+require('babel-polyfill')
+const Store = require('electron-store');
+const store = new Store();
 
-var TvShows = JSON.parse(Fs.readFileSync(config.MainFolder+'/tv_shows.json', 'utf8'))
-var Films = JSON.parse(Fs.readFileSync(config.MainFolder+'/films.json', 'utf8'))
-var Untracked = JSON.parse(Fs.readFileSync(config.MainFolder+'/untracked.json', 'utf8'))
+var TvShows = store.get('tvShows')
+var Films = store.get('films')
+var Untracked = store.get('untracked')
+
 
 import Episode from "./Episode";
 import Seasons from "./Seasons";
@@ -126,18 +129,18 @@ export default class Item extends React.Component {
       }
     }
 
-    if(this.props.selected){
-      SelectedClass = "poster-selected"
-    }
-    if(this.props.quit){
-      this.closeNav()
-    }
-    if(this.props.choosed){
-      this.openNav()
-    }
+    // if(this.props.selected){
+    //   SelectedClass = "poster-selected"
+    // }
+    // if(this.props.quit){
+    //   this.closeNav()
+    // }
+    // if(this.props.choosed){
+    //   this.openNav()
+    // }
 
     if (this.state.item.Poster == "N/A" || !this.state.item.Poster) {
-      this.state.item.Poster = "http://localhost:3000/app/data/poster_not_found.png"
+      this.state.item.Poster = "./data/poster_not_found.png"
     }
 
 
