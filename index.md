@@ -35,7 +35,7 @@ npm run dev #( dev mode with hot reload )
 (tested with node 7.10.1 and npm 5.6.0)
 
 
-## Licence
+<h2> Licence </h2>
 
 NetFreaks - Media Center under GPLv3
 
