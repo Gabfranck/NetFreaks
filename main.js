@@ -15,7 +15,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 'use strict';
-
+""
 /**
 * Module dependencies.
 
@@ -32,7 +32,12 @@ const http = require('http');
 const Store = require('electron-store');
 const store = new Store();
 
-console.log(store.get('config.MainFolder'))
+store.set('config.ApiKey', 'ae861c26')
+
+var filmsData = store.get('films') || []
+var tv_showsData = store.get('tvShows') || []
+var untrackedData = store.get('untracked') || []
+
 
 
 // debug
@@ -359,6 +364,18 @@ function createWindow() {
   //   mainWindow.webContents.send('esc' , {msg:'esc'});
   // });
 
+  electronLocalshortcut.register(mainWindow, 'CmdOrCtrl+q', () => {
+    electron.app.quit();
+  });
+
+  var toggle = true
+  mainWindow.setFullScreen(toggle)
+
+  electronLocalshortcut.register(mainWindow, 'CmdOrCtrl+f', () => {
+    toggle = !toggle
+    mainWindow.setFullScreen(toggle)
+  });
+
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
@@ -433,6 +450,7 @@ ipcMain.on('change-folder', (event, arg) => {
   });
   event.returnValue = 'pong'
 })
+
 ipcMain.on('vlc-exec', (event, arg) => {
   let vlc
   if (process.platform == 'darwin') {
