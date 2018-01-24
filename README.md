@@ -1,8 +1,8 @@
 <p align="center">
-<img width="300px" height="300px" src="./logo_icon.png" />
+<img width="300px" height="300px" src="./app/data/logo_icon.png" />
 <h1 align="center"> NetFreaks </h1>
 <h3 align="center"> Free Media Center cross platform under GPLv3 </h3>
-<img src="./concept.png" />
+<img src="./app/data/concept.png" />
 <p align="center">Turns your media folder into a Media Center</p>
 </p>
 
