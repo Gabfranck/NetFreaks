@@ -1,9 +1,9 @@
 <p style="text-align: center">
-  <img width="300px" height="300px" src="./logo_icon.png" />
-  <h1> NetFreaks Pages</h1>
-  <h3> Free Media Center cross platform under GPLv3 </h3>
-  <img src="./concept.png" />
-  Turns your media folder into a Media Center
+<img width="300px" height="300px" src="./logo_icon.png" />
+<h1> NetFreaks Pages</h1>
+<h3> Free Media Center cross platform under GPLv3 </h3>
+<img src="./concept.png" />
+Turns your media folder into a Media Center
 </p>
 
 ## Realeses
