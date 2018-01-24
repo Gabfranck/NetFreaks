@@ -12,25 +12,25 @@ Coming soon
 
 ## Manual Installation
 
-  ```bash
-    git clone https://github.com/Gabfranck/NetFreaks.git
-    cd NetFreaks
-    npm install
-  ```
+```bash
+git clone https://github.com/Gabfranck/NetFreaks.git
+cd NetFreaks
+npm install
+```
 
-  "MainFolder" is optional, it will be set at first launch
+"MainFolder" is optional, it will be set at first launch
 
-  Get api key [here](http://www.omdbapi.com/)
+Get api key [here](http://www.omdbapi.com/)
 
 ###  Run it
 
-  ```bash
-    npm start
-    # or
-    npm run dev #( dev mode with hot reload )
-  ```
+```bash
+npm start
+# or
+npm run dev #( dev mode with hot reload )
+```
 
-  (tested with node 7.10.1 and npm 5.6.0)
+(tested with node 7.10.1 and npm 5.6.0)
 
 ## Licence
 
