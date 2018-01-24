@@ -2,12 +2,16 @@
 layout: default
 ---
 
+<p style="width:100%; text-align: center">
+
 # NetFreaks
 
 #### Free Media Center cross platform under GPLv3
 
-###![Feature](./concept.png)Turns your media folder into a Media Center
+![Feature](./concept.png)
 
+ Turns your media folder into a Media Center
+</p>
 
 ## Realeses
 
