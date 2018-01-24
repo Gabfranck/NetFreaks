@@ -2,12 +2,6 @@
 layout: default
 ---
 
-<p align="center">
-<h1 align="center"> Turns your media folder into a Media Center </h1>
-<img src="./concept.png" />
-</p>
-
-
 ## Realeses
 
 Coming soon
