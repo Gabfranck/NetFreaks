@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<p align="center">
+<p style="text-align: center">
   <h1> NetFreaks </h1>
   <h3> Free Media Center cross platform under GPLv3 </h3>
   <img src="./concept.png" />

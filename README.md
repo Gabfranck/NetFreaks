@@ -1,5 +1,5 @@
-<p align="center">
-  <img style="width: 300px; height:300px;" src="./logo_icon.png" />
+<p style="text-align: center">
+  <img width="300px" height="300px" src="./logo_icon.png" />
   <h1> NetFreaks Pages</h1>
   <h3> Free Media Center cross platform under GPLv3 </h3>
   <img src="./concept.png" />
