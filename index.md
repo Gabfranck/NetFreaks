@@ -3,17 +3,8 @@ layout: default
 ---
 
 <p align="center">
-<h1> NetFreaks </h1>
-<h3> Free Media Center cross platform under GPLv3 </h3>
+<h1 align="center"> Turns your media folder into a Media Center </h1>
 <img src="./concept.png" />
-Turns your media folder into a Media Center
-</p>
-
-<p align="center">
-<h1 align="center"> NetFreaks</h1>
-<h3 align="center"> Free Media Center cross platform under GPLv3 </h3>
-<img src="./concept.png" />
-<p align="center">Turns your media folder into a Media Center</p>
 </p>
 
 
