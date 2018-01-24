@@ -2,11 +2,11 @@
 layout: default
 ---
 
-<p style="text-align: center">
-  <h1> NetFreaks </h1>
-  <h3> Free Media Center cross platform under GPLv3 </h3>
-  <img src="./concept.png" />
-  Turns your media folder into a Media Center
+<p align="center">
+<h1> NetFreaks </h1>
+<h3> Free Media Center cross platform under GPLv3 </h3>
+<img src="./concept.png" />
+Turns your media folder into a Media Center
 </p>
 
 ## Realeses
