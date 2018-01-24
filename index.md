@@ -2,33 +2,31 @@
 layout: default
 ---
 
-[Link to another page](another-page).
-
-
 # NetFreaks
 
-doc is coming soon
+#### Free Media Center cross platform under GPLv3
 
-# Installation
+###![Feature](./concept.png)Turns your media folder into a Media Center
+
+
+## Realeses
+
+Coming soon
+
+## Manual Installation
 
   ```bash
     git clone https://github.com/Gabfranck/NetFreaks.git
     cd NetFreaks
     npm install
   ```
-  
-  Create a config.json file at the root
-  ```json
-  {
-    "ApiKey": "Your ApiKey from OMDB",
-    "MainFolder": "/full/path/to/medias/folder/"
-  }
-  ```
+
   "MainFolder" is optional, it will be set at first launch
 
   Get api key [here](http://www.omdbapi.com/)
 
-# Run it
+###  Run it
+
   ```bash
     npm start
     # or
@@ -37,7 +35,7 @@ doc is coming soon
 
   (tested with node 7.10.1 and npm 5.6.0)
 
-# Licence
+## Licence
 
 NetFreaks - Media Center under GPLv3
 
